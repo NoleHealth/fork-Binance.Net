@@ -41,6 +41,7 @@ namespace Binance.Net.Clients.SpotApi
         private const string bookPricesEndpoint = "ticker/bookTicker";
         private const string averagePriceEndpoint = "avgPrice";
         private const string tradeFeeEndpoint = "asset/tradeFee";
+        private const string tradeingFeeEndpoint = "asset/query/trading-fee";
 
         private const string pingEndpoint = "ping";
         private const string checkTimeEndpoint = "time";
@@ -454,7 +455,23 @@ namespace Binance.Net.Clients.SpotApi
             var result = await _baseClient.SendRequestInternal<IEnumerable<BinanceTradeFee>>(_baseClient.GetUrl(tradeFeeEndpoint, "sapi", "1"), HttpMethod.Get, ct, parameters, true).ConfigureAwait(false);
             return result;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="symbol"></param>
+        /// <param name="receiveWindow"></param>
+        /// <param name="ct"></param>
+        /// <returns></returns>
+        public async Task<WebCallResult<IEnumerable<BinanceTradeFee>>> GetTradeingFeeAsync(string? symbol = null, int? receiveWindow = null, CancellationToken ct = default)
+        {
+            symbol?.ValidateBinanceSymbol();
+            var parameters = new Dictionary<string, object>();
+            parameters.AddOptionalParameter("symbol", symbol);
+            parameters.AddOptionalParameter("recvWindow", receiveWindow?.ToString(CultureInfo.InvariantCulture) ?? _baseClient.Options.ReceiveWindow.TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
 
+            var result = await _baseClient.SendRequestInternal<IEnumerable<BinanceTradeFee>>(_baseClient.GetUrl(tradeingFeeEndpoint, "sapi", "1"), HttpMethod.Get, ct, parameters, true).ConfigureAwait(false);
+            return result;
+        }
         #endregion
 
         #region Query Margin Asset
