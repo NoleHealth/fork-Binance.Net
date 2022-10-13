@@ -5802,8 +5802,8 @@
         <member name="M:Binance.Net.Interfaces.Clients.GeneralApi.IBinanceClientGeneralApiCryptoLoans.GetOpenBorrowOrdersAsync(System.Nullable{System.Int64},System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int64},System.Threading.CancellationToken)">
             <summary>
             Get ongoing loan orders
-            </summary>
             <para><a href="https://binance-docs.github.io/apidocs/spot/en/#borrow-get-loan-ongoing-orders-user_data" /></para>
+            </summary>
             <param name="orderId">Filter by order id</param>
             <param name="loanAsset">Filter by loan asset</param>
             <param name="collateralAsset">Filter by collateral asset</param>

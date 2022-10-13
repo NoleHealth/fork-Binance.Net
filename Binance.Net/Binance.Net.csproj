@@ -19,7 +19,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <NeutralLanguage>en</NeutralLanguage>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageReleaseNotes>8.2.0 - Added CryptoLoans endpoints, Added ConvertTransfer endpoints, Added GetMarginLevelInformationAsync endpoint, Added GetExchangeInfoAsync spot account type overloads, Renamed Lending endpoints to Savings endpoints, Added missing OrderRejectReason, Fixed incorrect AllowFailure enum serialization on SpotApi.ReplaceOrderAsync, Fixed ticker interface for futures streams</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Label="Deterministic Build" Condition="'$(Configuration)' == 'Release'">
