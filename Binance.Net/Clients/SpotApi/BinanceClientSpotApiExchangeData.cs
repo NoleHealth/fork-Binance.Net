@@ -462,7 +462,7 @@ namespace Binance.Net.Clients.SpotApi
         /// <param name="receiveWindow"></param>
         /// <param name="ct"></param>
         /// <returns></returns>
-        public async Task<WebCallResult<IEnumerable<BinanceTradeFee>>> GetTradeingFeeAsync(string? symbol = null, int? receiveWindow = null, CancellationToken ct = default)
+        public async Task<WebCallResult<IEnumerable<BinanceTradeFee>>> GetTradingFeeAsync(string? symbol = null, int? receiveWindow = null, CancellationToken ct = default)
         {
             symbol?.ValidateBinanceSymbol();
             var parameters = new Dictionary<string, object>();

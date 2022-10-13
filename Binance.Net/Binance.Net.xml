@@ -1146,7 +1146,7 @@
         <member name="M:Binance.Net.Clients.SpotApi.BinanceClientSpotApiExchangeData.GetTradeFeeAsync(System.String,System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:Binance.Net.Clients.SpotApi.BinanceClientSpotApiExchangeData.GetTradeingFeeAsync(System.String,System.Nullable{System.Int32},System.Threading.CancellationToken)">
+        <member name="M:Binance.Net.Clients.SpotApi.BinanceClientSpotApiExchangeData.GetTradingFeeAsync(System.String,System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             
             </summary>

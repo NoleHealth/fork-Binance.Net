@@ -175,7 +175,8 @@ namespace Binance.Net.Interfaces.Clients.SpotApi
         /// <param name="ct">Cancellation token</param>
         /// <returns>Trade fees</returns>
         Task<WebCallResult<IEnumerable<BinanceTradeFee>>> GetTradeFeeAsync(string? symbol = null, int? receiveWindow = null, CancellationToken ct = default);
-
+        Task<WebCallResult<IEnumerable<BinanceTradeFee>>> GetTradingFeeAsync(string? symbol = null, int? receiveWindow = null, CancellationToken ct = default);
+        
         /// <summary>
         /// Get data regarding the last 24 hours for the provided symbol
         /// <para><a href="https://binance-docs.github.io/apidocs/spot/en/#24hr-ticker-price-change-statistics" /></para>
