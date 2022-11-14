@@ -7,12 +7,12 @@ using Microsoft.Extensions.Logging;
 
 BinanceClient.SetDefaultOptions(new BinanceClientOptions()
 {
-    ApiCredentials = new ApiCredentials("APIKEY", "APISECRET"), // <- Provide you API key/secret in these fields to retrieve data related to your account
+    ApiCredentials = new ApiCredentials("EPgsYcA8Lpa9Mo3DQO8FIA32lQXoGBfdPjJGcG3SfOUbdtR6jjkYpx8dJCc4PVqG", "hDzJMdjUf0m0kOfdu2wMGMpwacWiAM95azEQfA6q13tjB2wSVMJPuAKJTUJSQFZI"), // <- Provide you API key/secret in these fields to retrieve data related to your account
     LogLevel = LogLevel.Debug
 });
 BinanceSocketClient.SetDefaultOptions(new BinanceSocketClientOptions()
 {
-    ApiCredentials = new ApiCredentials("APIKEY", "APISECRET"),
+    ApiCredentials = new ApiCredentials("EPgsYcA8Lpa9Mo3DQO8FIA32lQXoGBfdPjJGcG3SfOUbdtR6jjkYpx8dJCc4PVqG", "hDzJMdjUf0m0kOfdu2wMGMpwacWiAM95azEQfA6q13tjB2wSVMJPuAKJTUJSQFZI"),
     LogLevel = LogLevel.Debug
 });
 
@@ -34,12 +34,27 @@ if (read == "R")
 }
 else
 {
+    
     Console.WriteLine("Press enter to subscribe to BTCUSDT trade stream");
     Console.ReadLine();
     var socketClient = new BinanceSocketClient();
+    bool within10 = false;
+    DateTime? last10 = null;
     var subscription = await socketClient.SpotStreams.SubscribeToTradeUpdatesAsync("BTCUSDT", data =>
     {
-        Console.WriteLine($"{data.Data.TradeTime}: {data.Data.Quantity} @ {data.Data.Price}");
+        if (data.Data.Quantity >= 5M)
+        {
+            Console.WriteLine($"== Nibble {data.Data.TradeTime}: {data.Data.Event} {data.Data.Symbol} {data.Data.Quantity} @ {data.Data.Price}");
+        }
+        if (data.Data.Quantity >= 10M)
+        {
+            last10 = DateTime.Now;
+            Console.WriteLine($"=== SHARK IN THE WATER {data.Data.TradeTime}: {data.Data.Event} {data.Data.Symbol} {data.Data.Quantity} @ {data.Data.Price}");
+        }
+        within10 = (last10 != null && last10.Value.AddMinutes(5) > DateTime.Now);
+
+        if (within10 && data.Data.Quantity >= .25M)
+            Console.WriteLine($"{data.Data.TradeTime}: {data.Data.Event} {data.Data.Symbol} {data.Data.Quantity} @ {data.Data.Price}");
     });
     if (!subscription.Success)
     {
